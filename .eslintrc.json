@@ -34,6 +34,7 @@
         "jsx-a11y/no-static-element-interactions": false,
         "jsx-a11y/tabindex-no-positive": false,
         "jsx-a11y/no-noninteractive-tabindex": false,
-        "react/sort-comp": false
+        "react/sort-comp": false,
+        "react/no-did-update-set-state": false
     }
 }

@@ -1,13 +1,25 @@
 import React, { Component } from 'react'
-import Timer from '../../Timer/index'
+import Timer from '../../Timer'
 import style from './style.scss'
+import LapTimes from '../../Molecules/LapTimes'
 
 export default class componentName extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      mainTimerStart: false,
-      mainTimerReset: false
+      start: false,
+      mainTimerReset: false,
+      lapStart: false,
+      lapTimes: [],
+      record: false,
+      startButtonLabel: 'Start'
+    }
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (prevState.start !== this.state.start) {
+      const startButtonLabel = this.state.start ? 'Stop' : 'Resume'
+      this.setState({ startButtonLabel })
     }
   }
 
@@ -15,15 +27,66 @@ export default class componentName extends Component {
     this.setState({ [type]: !this.state[type] })
   }
 
+  storeTime (time) {
+    const { lapTimes } = this.state
+    let prevTime = 0
+    if (lapTimes.length) [, prevTime] = lapTimes[lapTimes.length - 1]
+
+    this.setState({ lapTimes: [...this.state.lapTimes, [time, prevTime + time]] })
+  }
+
+  reset () {
+    this.setState({ mainTimerReset: !this.state.mainTimerReset, lapStart: !this.state.mainTimerReset, lapTimes: [] })
+  }
+
   render () {
-    const { mainTimerStart, mainTimerReset } = this.state
+    const {
+      start,
+      mainTimerReset,
+      lapStart,
+      lapTimes
+    } = this.state
+
     return (
       <div>
+
         <div className={style.mainTimer} >
-          <Timer start={mainTimerStart} reset={mainTimerReset} />
+          <Timer
+            start={start}
+            reset={mainTimerReset}
+          />
         </div>
-        <button onClick={() => this.toggleState('mainTimerStart')} > { mainTimerStart ? 'Stop' : 'Start' } </button>
-        <button onClick={() => this.toggleState('mainTimerReset')} >  reset  </button>
+
+        <div className={style.lap} >
+          <Timer
+            start={start}
+            reset={lapStart}
+            lapTimer
+            storeTime={time => this.storeTime(time)}
+          />
+        </div>
+
+        <button
+          onClick={() => this.toggleState('start')}
+        >
+          {this.state.startButtonLabel }
+        </button>
+
+        {
+          this.state.startButtonLabel === 'Stop' &&
+          <button onClick={() => this.toggleState('lapStart')} >
+           Lap
+          </button>
+        }
+
+        {
+          this.state.startButtonLabel === 'Resume' &&
+          <button onClick={() => this.reset()} >  Reset
+          </button>
+        }
+
+        <LapTimes times={lapTimes} />
+
       </div>
     )
   }
