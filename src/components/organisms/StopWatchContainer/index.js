@@ -36,7 +36,10 @@ export default class componentName extends Component {
   }
 
   reset () {
-    this.setState({ mainTimerReset: !this.state.mainTimerReset, lapStart: !this.state.mainTimerReset, lapTimes: [] })
+    this.setState({
+      mainTimerReset: !this.state.mainTimerReset,
+      lapStart: !this.state.lapStart,
+      lapTimes: [] })
   }
 
   render () {
@@ -48,7 +51,7 @@ export default class componentName extends Component {
     } = this.state
 
     return (
-      <div>
+      <div className={style.container}>
 
         <div className={style.mainTimer} >
           <Timer
@@ -57,7 +60,7 @@ export default class componentName extends Component {
           />
         </div>
 
-        <div className={style.lap} >
+        <div className={style.lapTimer}>
           <Timer
             start={start}
             reset={lapStart}

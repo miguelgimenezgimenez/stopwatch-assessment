@@ -27,6 +27,7 @@ export default class Timer extends Component {
   reset () {
     this.stop()
     this.setState({ time: 0 })
+    console.log(this.props.start)
     if (this.props.lapTimer && this.props.start) {
       this.props.storeTime(this.state.time)
       this.start()
