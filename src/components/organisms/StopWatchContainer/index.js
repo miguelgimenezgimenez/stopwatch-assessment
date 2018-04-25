@@ -69,6 +69,8 @@ export default class componentName extends Component {
           />
         </div>
 
+        {this.state.lapTimes.length > 0 && <LapTimes times={lapTimes} />}
+
         <button
           onClick={() => this.toggleState('start')}
         >
@@ -87,8 +89,6 @@ export default class componentName extends Component {
           <button onClick={() => this.reset()} >  Reset
           </button>
         }
-
-        <LapTimes times={lapTimes} />
 
       </div>
     )
