@@ -30,13 +30,18 @@ Browser should be opened or  go to ``http://localhost:8080/``
 
 ## Architecture:
 
-To Structure the project I have grouped the components as molecules and organisms.
+To Structure the project I have used Atomic design, but since the project is very 
+small i have only used molecules and organisms.
 
 ### molecules
 
 Simple components that consist of simple html Elements 
-
+**LapTable**
+Table Showing laptimes and maintimes
+**Timer**
+The component that shows the time using setIntervarl functions
 
 ### organisms
+**StopWatchContainer**
 
 Components that are composed of molecules and other simple components
