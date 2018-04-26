@@ -1,15 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import style from './style.scss'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import StopWatchContainer from './components/organisms/StopWatchContainer'
 
-const App = () => {
-    
-    return (
-        <div>
-          <StopWatchContainer/>
-        </div>
-    );
-};
-export default App;
-ReactDOM.render(<App />, document.getElementById("app"));
+const App = () => (
+  <div>
+    <StopWatchContainer />
+  </div>
+)
+export default App
+ReactDOM.render(<App />, document.getElementById('app'))

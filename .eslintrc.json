@@ -4,12 +4,8 @@
         "standard"
     ],
     "globals": {
-        "afterEach": true,
-        "beforeEach": true,
-        "describe": true,
-        "fetch": true,
-        "it": true,
-        "should": true
+        "test": true,
+        "expect": true
     },
     "rules": {
         "object-curly-newline": 0,
@@ -25,6 +21,7 @@
         "react/jsx-filename-extension": false,
         "import/no-extraneous-dependencies": false,
         "react/prop-types": false,
+        "consistent-return": 0,
         "react/no-array-index-key": false,
         "import/no-absolute-path": false,
         "import/extensions": false,

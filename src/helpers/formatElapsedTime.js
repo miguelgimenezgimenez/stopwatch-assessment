@@ -1,14 +1,15 @@
 function formatElapsedTime (elapsedMilliseconds) {
+  if (!Number.isInteger(elapsedMilliseconds)) return '00:00.00'
   let hundredthsOfSeconds = Math.floor(elapsedMilliseconds / 10)
   let seconds = Math.floor(elapsedMilliseconds / 1000)
   let minutes
   let hours
 
-  if (seconds > 60) {
+  if (seconds >= 60) {
     [minutes, seconds] = parseTime(seconds)
   }
 
-  if (minutes > 60) {
+  if (minutes >= 60) {
     [hours, minutes] = parseTime(minutes)
   }
 
