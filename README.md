@@ -39,9 +39,12 @@ Simple components that consist of simple html Elements
 **LapTable**
 Table Showing laptimes and maintimes
 **Timer**
-The component that shows the time using setIntervarl functions
+The component that shows the time using setInterval functions
 
 ### organisms
-**StopWatchContainer**
 
 Components that are composed of molecules and other simple components
+
+**StopWatchContainer**
+Container that has all the molecules and buttons that trigger the stopwatch
+
