@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { formatElapsedTime } from '../../../helpers/formatElapsedTime'
+import { connect } from 'react-redux'
 
-export default class Timer extends Component {
+import { formatElapsedTime } from '../../../helpers/formatElapsedTime'
+import * as timeRecordsActions from '../../../actions/timeRecords'
+
+class Timer extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -28,7 +31,7 @@ export default class Timer extends Component {
     this.stop()
     this.setState({ time: 0 })
     if (this.props.lapTimer && this.props.start) {
-      this.props.storeTime(this.state.time)
+      timeRecordsActions.storeTime(this.props.dispatch, this.state.time)
       this.start()
     }
   }
@@ -45,3 +48,6 @@ export default class Timer extends Component {
     )
   }
 }
+
+// The component is connected so that dispatch is passed to it.
+export default connect()(Timer)

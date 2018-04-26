@@ -1,17 +1,20 @@
+
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Timer from '../../molecules/Timer'
 import style from './style.scss'
 import LapTable from '../../molecules/LapTable'
+import * as timeRecordsActions from '../../../actions/timeRecords'
+import * as historyActions from '../../../actions/history'
 
-export default class componentName extends Component {
+class StopWatchContainer extends Component {
   constructor (props) {
     super(props)
     this.state = {
       start: false,
       mainTimerReset: false,
       lapStart: false,
-      lapTimeMainTime: [],
       record: false,
       startButtonLabel: 'Start'
     }
@@ -24,35 +27,36 @@ export default class componentName extends Component {
     }
   }
 
+  history (type) {
+    historyActions[type](this.props.dispatch)
+  }
+
   toggleState (type) {
     this.setState({ [type]: !this.state[type] })
   }
 
-  storeTime (lapTime) {
-    const { lapTimeMainTime } = this.state
-    let mainTime = 0
-    if (lapTimeMainTime.length) [, mainTime] = lapTimeMainTime[lapTimeMainTime.length - 1]
-
-    this.setState({ lapTimeMainTime: [...this.state.lapTimeMainTime, [lapTime, mainTime + lapTime]] })
-  }
-
   reset () {
+    const { mainTimerReset, lapStart } = this.state
+
     this.setState({
-      mainTimerReset: !this.state.mainTimerReset,
-      lapStart: !this.state.lapStart,
-      lapTimeMainTime: [] })
+      mainTimerReset: !mainTimerReset,
+      lapStart: !lapStart
+    })
+
+    timeRecordsActions.reset(this.props.dispatch)
   }
 
   render () {
     const {
       start,
       mainTimerReset,
-      lapStart,
-      lapTimeMainTime
+      lapStart
     } = this.state
 
     return (
       <div className={style.container}>
+        <button onClick={() => { this.history('undo') }} > Undo </button>
+        <button onClick={() => { this.history('redo') }}> Redo </button>
 
         <div className={style.mainTimer} >
           <Timer
@@ -66,22 +70,21 @@ export default class componentName extends Component {
             start={start}
             reset={lapStart}
             lapTimer
-            storeTime={time => this.storeTime(time)}
           />
         </div>
 
-        {this.state.lapTimeMainTime.length > 0 && <LapTable lapTimeMainTime={lapTimeMainTime} />}
+        <LapTable />
 
         <button
           onClick={() => this.toggleState('start')}
         >
-          {this.state.startButtonLabel }
+          {this.state.startButtonLabel}
         </button>
 
         {
           this.state.startButtonLabel === 'Stop' &&
           <button onClick={() => this.toggleState('lapStart')} >
-           Lap
+          Lap
           </button>
         }
 
@@ -91,7 +94,8 @@ export default class componentName extends Component {
           </button>
         }
 
-      </div>
+      </div >
     )
   }
 }
+export default connect()(StopWatchContainer)

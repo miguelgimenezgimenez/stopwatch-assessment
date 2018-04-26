@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import { formatElapsedTime } from '../../../helpers/formatElapsedTime'
 import './style.scss'
 
-export default class LapTable extends Component {
+class LapTable extends Component {
   render () {
+    if (!this.props.lapTimeMainTime.length) return null
+
     return (
       <table >
         <tbody>
@@ -24,3 +27,7 @@ export default class LapTable extends Component {
     )
   }
 }
+const mapStateToProps = state => ({
+  lapTimeMainTime: state.present.timeRecords.lapTimeMainTime
+})
+export default connect(mapStateToProps)(LapTable)
