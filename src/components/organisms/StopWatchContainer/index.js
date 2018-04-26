@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import Timer from '../../atoms/Timer'
+
+import Timer from '../../molecules/Timer'
 import style from './style.scss'
-import LapTimes from '../../Molecules/LapTimes'
+import LapTimes from '../../molecules/LapTimes'
 
 export default class componentName extends Component {
   constructor (props) {
