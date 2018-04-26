@@ -10,7 +10,7 @@ export default class componentName extends Component {
       start: false,
       mainTimerReset: false,
       lapStart: false,
-      lapTimes: [],
+      lapTimeMainTime: [],
       record: false,
       startButtonLabel: 'Start'
     }
@@ -28,18 +28,18 @@ export default class componentName extends Component {
   }
 
   storeTime (lapTime) {
-    const { lapTimes } = this.state
+    const { lapTimeMainTime } = this.state
     let mainTime = 0
-    if (lapTimes.length) [, mainTime] = lapTimes[lapTimes.length - 1]
+    if (lapTimeMainTime.length) [, mainTime] = lapTimeMainTime[lapTimeMainTime.length - 1]
 
-    this.setState({ lapTimes: [...this.state.lapTimes, [lapTime, mainTime + lapTime]] })
+    this.setState({ lapTimeMainTime: [...this.state.lapTimeMainTime, [lapTime, mainTime + lapTime]] })
   }
 
   reset () {
     this.setState({
       mainTimerReset: !this.state.mainTimerReset,
       lapStart: !this.state.lapStart,
-      lapTimes: [] })
+      lapTimeMainTime: [] })
   }
 
   render () {
@@ -47,7 +47,7 @@ export default class componentName extends Component {
       start,
       mainTimerReset,
       lapStart,
-      lapTimes
+      lapTimeMainTime
     } = this.state
 
     return (
@@ -69,7 +69,7 @@ export default class componentName extends Component {
           />
         </div>
 
-        {this.state.lapTimes.length > 0 && <LapTimes times={lapTimes} />}
+        {this.state.lapTimeMainTime.length > 0 && <LapTimes lapTimeMainTime={lapTimeMainTime} />}
 
         <button
           onClick={() => this.toggleState('start')}

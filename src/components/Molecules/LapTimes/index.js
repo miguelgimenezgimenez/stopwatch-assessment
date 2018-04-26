@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import { formatElapsedTime } from '../../../helpers/formatElapsedTime'
 import './style.scss'
 
@@ -7,14 +8,14 @@ export default class LapTimes extends Component {
     return (
       <table >
         <tbody>
-          {this.props.times.map((time, index) => (
-            <tr key={time[1]}>
+          {this.props.lapTimeMainTime.map(([lapTime, mainTime], index) => (
+            <tr key={mainTime}>
               <td>{String(index).padStart(2, 0)}</td>
               <td>
-                {formatElapsedTime(time[0])}
+                {formatElapsedTime(lapTime)}
               </td>
               <td>
-                {formatElapsedTime(time[1])}
+                {formatElapsedTime(mainTime)}
               </td>
             </tr>))
           }
