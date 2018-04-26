@@ -1,4 +1,7 @@
 const INITIAL_STATE = {
+
+  /* this variable is called like that because its a 2 dimension array
+  which will have an array with the lapTime and maintime in each position of the outter array */
   lapTimeMainTime: [],
   error: null
 }
@@ -8,7 +11,8 @@ const setTime = (state, lapTime) => {
   if (state.lapTimeMainTime.length) {
     [, mainTime] = state.lapTimeMainTime[state.lapTimeMainTime.length - 1]
   }
-  // I could have used object spreaad plugin and  object spread operator
+  // I could have used object spreaad plugin and  object spread operator.
+  // here i create a 2 dimension array where i will store laptimes, and  mainTime(by adding laptimes)
   return Object.assign({}, state, { lapTimeMainTime: [...state.lapTimeMainTime, [lapTime, mainTime + lapTime]] })
 }
 
