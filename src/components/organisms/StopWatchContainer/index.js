@@ -11,6 +11,8 @@ export default class componentName extends Component {
       start: false,
       mainTimerReset: false,
       lapStart: false,
+      /* this variable is called lapTimeMainTime that because its a 2 dimension array (i dont really like the name)
+      which will have an array with the lapTime and maintime in each position of the outter array */
       lapTimeMainTime: [],
       record: false,
       startButtonLabel: 'Start'
@@ -32,7 +34,7 @@ export default class componentName extends Component {
     const { lapTimeMainTime } = this.state
     let mainTime = 0
     if (lapTimeMainTime.length) [, mainTime] = lapTimeMainTime[lapTimeMainTime.length - 1]
-
+    // here i create a 2 dimension array where i will store laptimes, and  mainTime(by adding laptimes)
     this.setState({ lapTimeMainTime: [...this.state.lapTimeMainTime, [lapTime, mainTime + lapTime]] })
   }
 
