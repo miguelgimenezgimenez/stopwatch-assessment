@@ -27,7 +27,7 @@ Browser should be opened or  go to ``http://localhost:8080/``
 
 
 
-# ARCHITECTURE:
+## Architecture:
 
 To Structure the project I have grouped the components as molecules and organisms.
 
