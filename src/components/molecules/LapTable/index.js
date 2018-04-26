@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { formatElapsedTime } from '../../../helpers/formatElapsedTime'
 import './style.scss'
 
-export default class LapTimes extends Component {
+export default class LapTable extends Component {
   render () {
     return (
       <table >

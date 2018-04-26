@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Timer from '../../molecules/Timer'
 import style from './style.scss'
-import LapTimes from '../../molecules/LapTimes'
+import LapTable from '../../molecules/LapTable'
 
 export default class componentName extends Component {
   constructor (props) {
@@ -70,7 +70,7 @@ export default class componentName extends Component {
           />
         </div>
 
-        {this.state.lapTimeMainTime.length > 0 && <LapTimes lapTimeMainTime={lapTimeMainTime} />}
+        {this.state.lapTimeMainTime.length > 0 && <LapTable lapTimeMainTime={lapTimeMainTime} />}
 
         <button
           onClick={() => this.toggleState('start')}
