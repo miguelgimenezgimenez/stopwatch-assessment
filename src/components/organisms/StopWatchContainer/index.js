@@ -27,12 +27,12 @@ export default class componentName extends Component {
     this.setState({ [type]: !this.state[type] })
   }
 
-  storeTime (time) {
+  storeTime (lapTime) {
     const { lapTimes } = this.state
-    let prevTime = 0
-    if (lapTimes.length) [, prevTime] = lapTimes[lapTimes.length - 1]
+    let mainTime = 0
+    if (lapTimes.length) [, mainTime] = lapTimes[lapTimes.length - 1]
 
-    this.setState({ lapTimes: [...this.state.lapTimes, [time, prevTime + time]] })
+    this.setState({ lapTimes: [...this.state.lapTimes, [lapTime, mainTime + lapTime]] })
   }
 
   reset () {
