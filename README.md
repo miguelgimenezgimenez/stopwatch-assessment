@@ -33,18 +33,23 @@ Browser should be opened or  go to ``http://localhost:8080/``
 To Structure the project I have used Atomic design, but since the project is very 
 small i have only used molecules and organisms.
 
-### molecules
+### Molecules
 
 Simple components that consist of simple html Elements 
+
 **LapTable**
+
 Table Showing laptimes and maintimes
+
 **Timer**
+
 The component that shows the time using setInterval functions
 
-### organisms
+### Organisms
 
 Components that are composed of molecules and other simple components
 
 **StopWatchContainer**
+
 Container that has all the molecules and buttons that trigger the stopwatch
 
