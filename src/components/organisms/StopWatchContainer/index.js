@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Timer from '../../Timer'
+import Timer from '../../atoms/Timer'
 import style from './style.scss'
 import LapTimes from '../../Molecules/LapTimes'
 

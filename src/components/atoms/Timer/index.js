@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { formatElapsedTime } from '../../helpers/formatElapsedTime'
+import { formatElapsedTime } from '../../../helpers/formatElapsedTime'
 
 export default class Timer extends Component {
   constructor (props) {
