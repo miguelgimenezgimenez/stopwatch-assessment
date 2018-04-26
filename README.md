@@ -20,7 +20,7 @@ I used a very simple Webpack (latest version) configuration.
 
 **Run project**
 
-
+    $ nvm use
     $ npm run dev   
     
  
