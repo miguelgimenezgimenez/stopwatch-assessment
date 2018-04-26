@@ -22,6 +22,7 @@ I used a very simple Webpack (latest version) configuration.
 
 
     $ npm run dev   
+    
  
 Browser should be opened or  go to ``http://localhost:8080/``
 
