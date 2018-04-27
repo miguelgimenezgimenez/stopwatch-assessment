@@ -4,6 +4,10 @@ import { connect } from 'react-redux'
 import { formatElapsedTime } from '../../../helpers/formatElapsedTime'
 import * as timeRecordsActions from '../../../actions/timeRecords'
 
+function increaseTime (state, props) {
+  return { time: state.time + 10 }
+}
+
 class Timer extends Component {
   constructor (props) {
     super(props)
@@ -20,7 +24,7 @@ class Timer extends Component {
   }
 
   start () {
-    this.intervalId = setInterval(() => this.setState({ time: this.state.time + 10 }), 10)
+    this.intervalId = setInterval(() => this.setState(increaseTime), 10)
   }
 
   stop () {
@@ -28,10 +32,11 @@ class Timer extends Component {
   }
 
   reset () {
+    const { time } = this.state
     this.stop()
     this.setState({ time: 0 })
     if (this.props.lapTimer && this.props.start) {
-      timeRecordsActions.storeTime(this.props.dispatch, this.state.time)
+      timeRecordsActions.storeTime(this.props.dispatch, time)
       this.start()
     }
   }
