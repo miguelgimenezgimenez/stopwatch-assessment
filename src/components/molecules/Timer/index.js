@@ -32,6 +32,7 @@ class Timer extends Component {
   }
 
   reset () {
+    // storing the time in as variable is not necessary, since the state wont
     const { time } = this.state
     this.stop()
     this.setState({ time: 0 })
