@@ -29,6 +29,7 @@ export default class Timer extends Component {
   }
 
   reset () {
+    // storing the time in as variable is not necessary, since the state wont
     const { time } = this.state
     clearInterval(this.intervalId)
     this.setState({ time: 0 })
