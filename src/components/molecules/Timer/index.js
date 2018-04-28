@@ -4,10 +4,6 @@ import { connect } from 'react-redux'
 import { formatElapsedTime } from '../../../helpers/formatElapsedTime'
 import * as timeRecordsActions from '../../../actions/timeRecords'
 
-function increaseTime (state, props) {
-  return { time: state.time + 10 }
-}
-
 class Timer extends Component {
   constructor (props) {
     super(props)
@@ -19,22 +15,19 @@ class Timer extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.start && !this.props.start) this.start()
-    if (!nextProps.start && this.props.start) this.stop()
+    if (!nextProps.start && this.props.start) clearInterval(this.intervalId)
     if (this.props.reset !== nextProps.reset) this.reset()
   }
 
   start () {
-    this.intervalId = setInterval(() => this.setState(increaseTime), 10)
-  }
-
-  stop () {
-    clearInterval(this.intervalId)
+    this.intervalId = setInterval(() => this.setState(state => ({ time: state.time + 10 })), 10)
   }
 
   reset () {
-    // storing the time in as variable is not necessary, since the state wont
+    /* storing the time in as variable is not necessary,
+     since the state wont be updated until the end of the function */
     const { time } = this.state
-    this.stop()
+    clearInterval(this.intervalId)
     this.setState({ time: 0 })
     if (this.props.lapTimer && this.props.start) {
       timeRecordsActions.storeTime(this.props.dispatch, time)
@@ -43,7 +36,7 @@ class Timer extends Component {
   }
 
   componentWillUnmount () {
-    this.stop()
+    clearInterval(this.intervalId)
   }
 
   render () {
