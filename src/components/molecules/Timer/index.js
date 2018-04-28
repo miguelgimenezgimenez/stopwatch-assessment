@@ -15,19 +15,15 @@ class Timer extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.start && !this.props.start) this.start()
-    if (!nextProps.start && this.props.start) clearInterval(this.intervalId)
+    if (!nextProps.start && this.props.start) this.stop()
     if (this.props.reset !== nextProps.reset) this.reset()
-  }
-
-  start () {
-    this.intervalId = setInterval(() => this.setState(state => ({ time: state.time + 10 })), 10)
   }
 
   reset () {
     /* storing the time in as variable is not necessary,
      since the state wont be updated until the end of the function */
     const { time } = this.state
-    clearInterval(this.intervalId)
+    this.stop()
     this.setState({ time: 0 })
     if (this.props.lapTimer && this.props.start) {
       timeRecordsActions.storeTime(this.props.dispatch, time)
@@ -35,8 +31,18 @@ class Timer extends Component {
     }
   }
 
-  componentWillUnmount () {
+  start () {
+    /* i am using functional set state,
+    because I believe its good practice to use it when dealing with previous states */
+    this.intervalId = setInterval(() => this.setState(state => ({ time: state.time + 10 })), 10)
+  }
+
+  stop () {
     clearInterval(this.intervalId)
+  }
+
+  componentWillUnmount () {
+    this.stop()
   }
 
   render () {
