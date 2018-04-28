@@ -4,7 +4,7 @@ the project can be seen at http://stopwatch.miguelgimenez.tech/
 
 
 I have done all the questions although only asked to do the first 2.
-The maintimes in the table are calculated by adding LapTimes, when the lap button is pressed and the lap resets, some milliseconds might go in the main timer, causing to be a discrepancy between the added mainTimes in the table and the main timer.
+The maintimes in the table are calculated by adding LapTimes. Due to the synchronous nature of JS there might be some discrepancy between the maintimes in the table and the mainTime timer.
 The first 2 questions are in the ***master*** branch , while the undo-redo with redux is in the ***feat-undo-redo*** branch.
 
 I used a very simple Webpack (latest version) configuration.

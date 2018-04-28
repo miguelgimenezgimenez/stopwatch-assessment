@@ -4,16 +4,15 @@ import Timer from '../../molecules/Timer'
 import style from './style.scss'
 import LapTable from '../../molecules/LapTable'
 
-export default class componentName extends Component {
+export default class StopWatchContainer extends Component {
   constructor (props) {
     super(props)
     this.state = {
       start: false,
-      mainTimerReset: false,
+      reset: false,
       lapStart: false,
-      /* this variable is called lapTimeMainTime that because its a 2 dimension array (i dont really like the name)
-      which will have an array with the lapTime and maintime in each position of the outter array */
-      lapTimeMainTime: [],
+      lapTime: [],
+      mainTime: [],
       record: false,
       startButtonLabel: 'Start'
     }
@@ -30,27 +29,25 @@ export default class componentName extends Component {
     this.setState({ [type]: !this.state[type] })
   }
 
-  storeTime (lapTime) {
-    const { lapTimeMainTime } = this.state
-    let mainTime = 0
-    if (lapTimeMainTime.length) [, mainTime] = lapTimeMainTime[lapTimeMainTime.length - 1]
-    // here i create a 2 dimension array where i will store laptimes, and  mainTime(by adding laptimes)
-    this.setState({ lapTimeMainTime: [...this.state.lapTimeMainTime, [lapTime, mainTime + lapTime]] })
+  storeTime (time, type) {
+    const recordedTimes = [...this.state[type], time]
+    this.setState({ [type]: recordedTimes })
   }
 
   reset () {
     this.setState({
-      mainTimerReset: !this.state.mainTimerReset,
-      lapStart: !this.state.lapStart,
-      lapTimeMainTime: [] })
+      reset: !this.state.reset,
+      lapTime: [],
+      mainTime: [] })
   }
 
   render () {
     const {
       start,
-      mainTimerReset,
+      reset,
       lapStart,
-      lapTimeMainTime
+      lapTime,
+      mainTime
     } = this.state
 
     return (
@@ -59,20 +56,23 @@ export default class componentName extends Component {
         <div className={style.mainTimer} >
           <Timer
             start={start}
-            reset={mainTimerReset}
+            reset={reset}
+            lap={lapStart}
+            storeTime={time => this.storeTime(time, 'mainTime')}
           />
         </div>
 
         <div className={style.lapTimer}>
           <Timer
             start={start}
-            reset={lapStart}
+            reset={reset}
+            lap={lapStart}
             lapTimer
-            storeTime={time => this.storeTime(time)}
+            storeTime={time => this.storeTime(time, 'lapTime')}
           />
         </div>
 
-        {this.state.lapTimeMainTime.length > 0 && <LapTable lapTimeMainTime={lapTimeMainTime} />}
+        {this.state.lapTime.length > 0 && <LapTable lapTime={lapTime} mainTime={mainTime} />}
 
         <button
           onClick={() => this.toggleState('start')}

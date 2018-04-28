@@ -12,28 +12,35 @@ export default class Timer extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.start && !this.props.start) this.start()
-    if (!nextProps.start && this.props.start) clearInterval(this.intervalId)
+    if (!nextProps.start && this.props.start) this.stop()
     if (this.props.reset !== nextProps.reset) this.reset()
+    if (this.props.lap !== nextProps.lap) this.lap()
+  }
+
+  lap () {
+    const { time } = this.state
+    this.props.storeTime(time)
+    if (this.props.lapTimer && this.props.start) {
+      this.stop()
+      this.setState({ time: 0 })
+      this.start()
+    }
+  }
+
+  reset () {
+    this.setState({ time: 0 })
   }
 
   start () {
     this.intervalId = setInterval(() => this.setState(state => ({ time: state.time + 10 })), 10)
   }
 
-  reset () {
-    /* storing the time in a variable is not necessary,
-    since the state wont be updated until the end of the function */
-    const { time } = this.state
+  stop () {
     clearInterval(this.intervalId)
-    this.setState({ time: 0 })
-    if (this.props.lapTimer && this.props.start) {
-      this.props.storeTime(time)
-      this.start()
-    }
   }
 
   componentWillUnmount () {
-    clearInterval(this.intervalId)
+    this.stop()
   }
 
   render () {

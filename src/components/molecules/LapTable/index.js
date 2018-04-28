@@ -8,14 +8,14 @@ export default class LapTable extends Component {
     return (
       <table >
         <tbody>
-          {this.props.lapTimeMainTime.map(([lapTime, mainTime], index) => (
-            <tr key={mainTime}>
+          {this.props.lapTime.map((lapTime, index) => (
+            <tr key={this.props.mainTime[index]}>
               <td>{String(index).padStart(2, 0)}</td>
               <td>
                 {formatElapsedTime(lapTime)}
               </td>
               <td>
-                {formatElapsedTime(mainTime)}
+                {formatElapsedTime(this.props.mainTime[index])}
               </td>
             </tr>))
           }
