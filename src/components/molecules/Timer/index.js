@@ -32,6 +32,7 @@ export default class Timer extends Component {
   }
 
   start () {
+    /* I have used functional set state since i believe its good practice when dealing with previous states */
     this.intervalId = setInterval(() => this.setState(state => ({ time: state.time + 10 })), 10)
   }
 
