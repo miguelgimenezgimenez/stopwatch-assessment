@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { formatElapsedTime } from '../../../helpers/formatElapsedTime'
 
-function increaseTime (state, props) {
-  return { time: state.time + 10 }
-}
-
 export default class Timer extends Component {
   constructor (props) {
     super(props)
@@ -21,11 +17,7 @@ export default class Timer extends Component {
   }
 
   start () {
-    this.intervalId = setInterval(() => this.setState(increaseTime), 10)
-  }
-
-  stop () {
-    clearInterval(this.intervalId)
+    this.intervalId = setInterval(() => this.setState(state => ({ time: state.time + 10 })), 10)
   }
 
   reset () {
