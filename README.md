@@ -16,17 +16,24 @@ In this solution main times and lap times for the table are stored in different 
 Since this calls are synchronoust that means that one time record will be stored after the other one, some times causing a small discrepancy between the lap time and main time (this is easy to see on first record since lap time and main time should be exactly the same). But the main times displayed in the  depend only on the main timer, so there is no error accumulation in the maintime table records  (unlike solution 2).
 
 sample:
-| 00| 10.97 | 10.98  | 
+
+|Lap| LapTime  | MainTime |
+|---|:--------:| --------:|
+| 00| 00:10.97 | 00:10.98 |
 
 Here both Results should be exactly the same.
 The good thing about this solution is that the main times from the table are always in sync with the main time.
 If you add lap times you would get an error accumulation every time you store a lap, but lap times and main times displayed in the table will never be more than 1ms of difference between the lap times in the watch. Thats why i believe this is a better solution.
 
 sample:
-####70.03####
-#####09.03#####
-| 10| 10.97 | 60.97 |
-| 11| 09.03 | 70.03 | 
+
+###  MainTime : 01:09.12 
+#### LapTime : 00:09.03
+
+|Lap| LapTime  | MainTime |
+|---|:--------:| --------:|
+| 10| 00:10.97 | 00:49.97 |
+| 11| 00:19.03 | 01:09.00 | 
 
 Here main times are synced
 
@@ -39,12 +46,16 @@ The problem with this solution is that the discrepancy between the main times di
 
 
 Hypothetical sample (assuming lap and stop where pressed at the same time ):
-####70.13####
-#####09.03#####
-| 10| 10.97 | 60.97 |
-| 11| 09.03 | 70.03 | 
 
-here there  is a discrepancy of 1 tenth of a second between maintime in the table and maintime in the watch.
+###  MainTime :  01:09.12 
+#### LapTime :    00:09.03
+
+|Lap| LapTime  | MainTime |
+|---|:--------:| --------:|
+| 10| 00:10.97 | 00:49.97 |
+| 11| 00:19.03 | 01:09.00 | 
+
+here there  is a discrepancy of 12 hundredth of a second between maintime in the table and maintime in the watch.
 
 
 Although it was allowed to use create-react-app i used a very  simple Webpack (latest version) configuration.
