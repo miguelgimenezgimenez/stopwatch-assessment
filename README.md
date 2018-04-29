@@ -83,9 +83,10 @@ To Structure the project I have used Atomic design, but since the project is ver
 small i have only used molecules and organisms.
 
 ### Molecules
+Simple components that consist of simple html Elements 
+
 -----------------------------------------------------
 
-Simple components that consist of simple html Elements 
 
 **LapTable**
 
@@ -96,9 +97,10 @@ Table Showing laptimes and maintimes
 The component that shows the time using setInterval functions
 
 ### Organisms
+Components that are composed of molecules and other simple components
+
 ----------------------------------------------------------
 
-Components that are composed of molecules and other simple components
 
 **StopWatchContainer**
 
