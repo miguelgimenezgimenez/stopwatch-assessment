@@ -15,8 +15,6 @@ That is the reason why I have come with 2 different solutions, none of which are
 In this solution main times and lap times for the table are stored in different variables and calculated independently. This means the time records are stored by calling 2 different callbacks since the timers are different components. 
 Since this calls are synchronoust that means that one time record will be stored after the other one, some times causing a small discrepancy between the lap time and main time (this is easy to see on first record since lap time and main time should be exactly the same). But the main times displayed in the  depend only on the main timer, so there is no error accumulation in the maintime table records  (unlike solution 2).
 
-sample:
-
 |Lap| LapTime  | MainTime |
 |---|:--------:| --------:|
 | 00| 00:10.97 | 00:10.98 |
@@ -24,8 +22,6 @@ sample:
 Here both Results should be exactly the same.
 The good thing about this solution is that the main times from the table are always in sync with the main time.
 If you add lap times you would get an error accumulation every time you store a lap, but lap times and main times displayed in the table will never be more than 1ms of difference between the lap times in the watch. Thats why i believe this is a better solution.
-
-sample:
 
 ###  MainTime : 01:09.12 
 #### LapTime : 00:09.03
@@ -37,7 +33,6 @@ sample:
 
 Here main times are synced
 
-
 **Solution 2: ( feat-undo-redo branch):**
 
 In this solution the main times for the table are calculated by adding laptimes , in this solution is harder to see the discrepancy since
@@ -45,7 +40,7 @@ if you add lap times they will always give the result of the main times from the
 The problem with this solution is that the discrepancy between the main times displayed on the table will grow between the ones displayed in the watch everytime you add a lap.
 
 
-Hypothetical sample (assuming lap and stop where pressed at the same time ):
+**Hypothetical case (assuming lap and stop where pressed at the same time ):**
 
 ###  MainTime :  01:09.12 
 #### LapTime :    00:09.03
