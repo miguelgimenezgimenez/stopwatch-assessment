@@ -85,7 +85,6 @@ small i have only used molecules and organisms.
 ### Molecules
 Simple components that consist of simple html Elements 
 
------------------------------------------------------
 
 
 **LapTable**
@@ -99,7 +98,6 @@ The component that shows the time using setInterval functions
 ### Organisms
 Components that are composed of molecules and other simple components
 
-----------------------------------------------------------
 
 
 **StopWatchContainer**
