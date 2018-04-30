@@ -22,10 +22,10 @@ Since this calls are synchronous, it means that one time record will be stored a
 |---|:--------:| --------:|
 | 00| 00:10.97 | 00:10.98 |
 
-But the main times displayed in the  depend only on the main timer, 
 Here both Results should be exactly the same.
-The good thing about this solution is that the main times from the table are always in sync with the main time,so there is no error accumulation in the maintime table records  (unlike solution 2).
-If you add lap times you would get an error accumulation every time you store a lap, but lap times and main times displayed in the table will never be more than 1ms of difference between the lap times in the watch. Thats why i believe this is a better solution.
+
+The good thing about this solution is that the main times from the table are always in sync with the main time, because main times displayed in the table depend only on the main timer, so there is no error accumulation in the maintime table records  (unlike solution 2).
+If you add lap times you would get an error accumulation every time you store a lap, but main times displayed in the table will never be more than 1ms of difference with reality. Thats why i believe this is a better solution.
 
 ###  MainTime : 01:09.12 
 #### LapTime : 00:09.03
@@ -52,7 +52,7 @@ The problem with this solution is that the discrepancy between the main times di
 | 10| 00:10.97 | 00:49.97 |
 | 11| 00:19.03 | 01:09.00 | 
 
-here there  is a discrepancy of 12 hundredths of a second between maintime in the table and maintime in the watch.
+here there  is a discrepancy of 12 hundredths of a second between maintime in the table and maintime in the watch (real).
 
 
 ## Running the project
