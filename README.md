@@ -17,7 +17,7 @@ That is the reason why I have come with 2 different solutions, none of which are
 In this solution main times and lap times for the table are stored in different variables and calculated independently. This means the time records are stored by calling 2 different callbacks since the timers are different components. 
 Since this calls are synchronoust that means that one time record will be stored after the other one, some times causing a small discrepancy between the lap time and main time (this is easy to see on first record since lap time and main time should be exactly the same). But the main times displayed in the  depend only on the main timer, so there is no error accumulation in the maintime table records  (unlike solution 2).
 
-**Discrepancy Sample**
+**Discrepancy Sample at Lap 0 (only happens sometimes)**
 
 |Lap| LapTime  | MainTime |
 |---|:--------:| --------:|
