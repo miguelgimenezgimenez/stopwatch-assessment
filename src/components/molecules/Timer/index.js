@@ -13,10 +13,11 @@ class Timer extends Component {
     this.intervalId = ''
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.start && !this.props.start) this.start()
-    if (!nextProps.start && this.props.start) this.stop()
-    if (this.props.reset !== nextProps.reset) this.reset()
+  componentDidUpdate (prevProps) {
+    if (this.props.start && !prevProps.start) this.start()
+    if (!this.props.start && prevProps.start) this.stop()
+    if (prevProps.reset !== this.props.reset) this.reset()
+    return null
   }
 
   reset () {
